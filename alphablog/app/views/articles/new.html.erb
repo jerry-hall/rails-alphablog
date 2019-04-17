@@ -14,16 +14,15 @@
   <p>
     <%= f.submit %>
   </p>
+<% end %>
 
+<% if @article.errors.any? %>
   <p>
-    <% if @article.errors.any? %>
     <h2>Required</h2>
     <ul>
       <% @article.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
       <% end %>
     </ul>
-    <% end %>
   </p>
-
 <% end %>
