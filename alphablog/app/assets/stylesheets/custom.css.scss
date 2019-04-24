@@ -1,2 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.nav {
+  float:left;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+.nav:hover {
+  color: black;
+}
