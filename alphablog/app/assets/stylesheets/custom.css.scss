@@ -11,3 +11,37 @@
 .nav:hover {
   color: black;
 }
+
+.title {
+  font-weight: bold;
+  letter-spacing: -2px;
+}
+
+.jumbotron {
+  background-image: asset-url('ruby_rails.png');
+  background-position: center;
+  background-size: cover;
+  height: 400px;
+  text-align: center;
+  color: inherit;
+}
+
+.alpha-btn {
+  background-color: black;
+  border-color: #b20000;
+  color: white;
+}
+
+.alpha-btn:hover {
+  background-color: #333333;;
+  border-color: #b20000;
+}
+
+.footer {
+  border-top: 1px solid #eaeaea;
+  color: #777
+}
+
+.footer:hover {
+  color: #222;
+}
