@@ -2,3 +2,7 @@
 <% flash.each do |name, msg| %>
   <%= msg %>
 <% end %>
+
+<% if flash.any? %>
+  <p>&nbsp;</p>
+<% end %>
