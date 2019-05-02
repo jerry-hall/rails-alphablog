@@ -1,13 +1,23 @@
-<h1>Showing selected article</h1>
+<h1 align="center">Show Article</h1>
+<hr>
 
-<p><b>Title:</b><br>
+
+<p align="center">
+  <b>Title:</b>
   <%= @article.title %>
 </p>
 
-<p><b>Description:</b> <br>
+<p align="center">
+  <b>Description:</b>
   <%= @article.description %>
 </p>
 
-<p>
-  <%= link_to "Back to articles", articles_path %> | <%= link_to "Create new article", new_article_path %>
+<p align="center">
+  <%= link_to "Edit", edit_article_path(@article), class: "btn btn-md btn-primary", style: "width: 8.8em;" %>
+  <%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-md btn-danger", style: "width: 10em;" %>
+</p>
+
+<p align="center">
+  <%= link_to "Back to articles", articles_path, class: "btn btn-md btn-primary" %>
+  <%= link_to "Create new article", new_article_path, class: "btn btn-md btn-primary" %>
 </p>
