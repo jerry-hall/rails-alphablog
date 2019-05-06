@@ -15,20 +15,22 @@
 .title {
   font-weight: bold;
   letter-spacing: -2px;
+  margin-top: 1em;
+  color: inherit;
+  text-shadow: #FC0 1px 0 10px;
 }
 
 .jumbotron {
-  background-image: asset-url('ruby_rails.png');
+  background-image: asset-url('dark-sunset-on-the-beach-x3.jpg');
   background-position: center;
   background-size: cover;
   height: 400px;
   text-align: center;
-  color: inherit;
 }
 
 .alpha-btn {
   background-color: black;
-  border-color: #b20000;
+  border-color: #FC0;
   color: white;
 }
 
