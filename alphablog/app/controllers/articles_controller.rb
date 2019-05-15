@@ -44,7 +44,7 @@ before_action :set_article, only: [:edit, :update, :show, :destroy]
 
   private
     def article_params
-      params.require(:article).permit(:title, :description)
+      params.require(:article).permit(:title, :description, :user_id)
     end
 
     def set_article
