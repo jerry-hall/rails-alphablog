@@ -31,6 +31,7 @@ class UsersController < ApplicationController
         format.html { redirect_to articles_path }
         flash[:success] = "Welcome to Alphablog #{@user.username}!"
         format.json { render :show, status: :created, location: @user }
+        session[:user_id] = @user.id
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -56,6 +57,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    session[:user_id] = nil if @user.id = session[:user_id]
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
