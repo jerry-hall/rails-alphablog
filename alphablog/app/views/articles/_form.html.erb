@@ -22,11 +22,10 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <%= f.submit class: "btn btn-primary btn-lg"%>
+          <%= link_to "Cancel", :back, class: "btn btn-lg" %>
         </div>
       </div>
     <% end %>
-
-    <%= link_to "Cancel and return to articles", articles_path %>
   </div>
 </div>
 

@@ -12,12 +12,13 @@
   <%= @article.description %>
 </p>
 
-<p align="center">
-  <%= link_to "Edit", edit_article_path(@article), class: "btn btn-md btn-primary", style: "width: 8.8em;" %>
-  <%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-md btn-danger", style: "width: 10em;" %>
-</p>
+<% if @article.user == current_user %>
+  <p align="center">
+    <%= link_to "Edit", edit_article_path(@article), class: "btn btn-md btn-primary", style: "width: 8.8em;" %>
+    <%= link_to "Delete", article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-md btn-danger", style: "width: 10em;" %>
+  </p>
+<% end %>
 
 <p align="center">
-  <%= link_to "Back to articles", articles_path, class: "btn btn-md btn-primary" %>
-  <%= link_to "Create new article", new_article_path, class: "btn btn-md btn-primary" %>
+  <%= link_to "Back to articles", articles_path, class: "btn btn-md" %>
 </p>

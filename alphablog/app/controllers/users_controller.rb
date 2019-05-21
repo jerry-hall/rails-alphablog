@@ -26,16 +26,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to articles_path }
-        flash[:success] = "Welcome to Alphablog #{@user.username}!"
-        format.json { render :show, status: :created, location: @user }
-        session[:user_id] = @user.id
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash[:success] = "Welcome to Alphablog #{@user.username}!"
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    else
+      render 'new'
     end
   end
 
@@ -57,7 +53,8 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    session[:user_id] = nil if @user.id = session[:user_id]
+    purge_articles
+    session[:user_id] = nil if @user.id = current_user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -75,5 +72,11 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :email, :password)
+    end
+
+    def purge_articles
+      while Article.find_by(user: @user.id)
+        Article.find_by(user: @user.id).destroy
+      end
     end
 end
