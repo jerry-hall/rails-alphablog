@@ -6,7 +6,7 @@
           <%= link_to "#{article.title}", article_path(article) %>
         </div>
         <div class="article-body">
-          <%= truncate(article.description, length: 110) %>
+          <%= truncate(sanitize(article.description, tags:[]), length:110) %>
         </div>
         <div class="article-meta">
           <small>

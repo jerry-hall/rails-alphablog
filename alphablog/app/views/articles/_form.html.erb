@@ -15,7 +15,7 @@
           <%= f.label :description %> <br>
         </div>
         <div class="col-sm-8">
-          <%= f.text_area :description, placeholder: "Body of article", rows: 10, class: "form-control" %>
+          <%= f.trix_editor :description, placeholder: "Body of article", style: "overflow-y: auto; max-height:800px; height: 175px;", class: "form-control" %>
         </div>
       </div>
 
