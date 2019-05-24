@@ -28,6 +28,17 @@
         </div>
       </div>
 
+      <% if admin? %>
+        <div class="form-group">
+          <div class="col-sm-2 control-label">
+            <%= f.label :admin %> <br>
+          </div>
+          <div class="col-sm-8">
+            <%= f.check_box :admin %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <%= f.submit @user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary btn-lg" %>
