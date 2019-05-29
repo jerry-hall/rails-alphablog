@@ -1,0 +1,25 @@
+<% obj.each do |user| %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="article-title">
+          <%= link_to "#{user.username}", user_path(user) %>
+        </div>
+        <% if user.admin %>
+          <div class="article-meta">
+            <small>
+              Administrator
+            </small>
+          </div>
+        <% end %>
+
+        <% if (user.id == current_user && logged_in?) || admin? %>
+          <div class="article-actions">
+            <%= link_to "Edit", edit_user_path(user), class: "btn btn-sm btn-primary" %>
+            <%= link_to "Delete", user_path(user), class: "btn btn-sm btn-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

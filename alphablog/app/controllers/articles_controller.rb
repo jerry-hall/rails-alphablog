@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 before_action :set_article, only: [:edit, :update, :show, :destroy]
 before_action :require_user, except: [:index, :show]
-before_action :require_same_user, only: [:edit, :update, :destroy]
+before_action :require_permissions, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 7)
@@ -55,8 +55,8 @@ before_action :require_same_user, only: [:edit, :update, :destroy]
       @article = Article.find(params[:id])
     end
 
-    def require_same_user
-      if @article.user != current_user
+    def require_permissions
+      if @article.user != current_user && !admin?
         flash[:danger] = "You do not have permissions to perform that action"
         redirect_back(fallback_location: articles_path)
       end

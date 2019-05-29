@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_permissions, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 7)
   end
 
   # GET /users/1
@@ -71,12 +72,19 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :email, :password, :admin)
     end
 
     def purge_articles
       while Article.find_by(user: @user.id)
         Article.find_by(user: @user.id).destroy
+      end
+    end
+
+    def require_permissions
+      if @user != current_user && !admin?
+        flash[:danger] = "You do not have permissions to perform that action"
+        redirect_back(fallback_location: users_path)
       end
     end
 end
