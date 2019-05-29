@@ -54,14 +54,14 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    purge_articles
-    session[:user_id] = nil if @user.id = current_user
     @user.destroy
+    session[:user_id] = nil if current_user == @user
     respond_to do |format|
-      format.html { redirect_to users_url }
-      flash[:danger] = "User was successfully destroyed."
+      format.html { redirect_to users_path }
+      flash[:danger] = "#{@user.username} and their articles were successfully deleted."
       format.json { head :no_content }
     end
+
   end
 
   private
@@ -73,12 +73,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :email, :password, :admin)
-    end
-
-    def purge_articles
-      while Article.find_by(user: @user.id)
-        Article.find_by(user: @user.id).destroy
-      end
     end
 
     def require_permissions
