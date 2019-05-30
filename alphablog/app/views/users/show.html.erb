@@ -18,3 +18,9 @@
     </div>
   </div>
 </div>
+<% if @user.articles.any? %>
+  <div class="col-xs-8 col-xs-offset-2">
+    <h1 align="center">Articles</h1>
+  </div>
+<% end %>
+<%= render "articles/list_articles", obj: @user.articles %>
